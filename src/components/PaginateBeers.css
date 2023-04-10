@@ -1,0 +1,9 @@
+.beer-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.beer-info__image {
+  height: 300px;
+}
