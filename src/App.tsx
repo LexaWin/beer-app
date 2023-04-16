@@ -43,7 +43,7 @@ const App: React.FC = () => (
             <Route exact path="/">
               <Main />
             </Route>
-            <Route exact path="/beer/:beerId">
+            <Route exact path="/:pageNumber/:beerId">
               <BeerInfo />
             </Route>
           </IonRouterOutlet>

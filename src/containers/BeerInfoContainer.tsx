@@ -1,22 +1,27 @@
 import { useParams } from 'react-router';
-import { useBeer } from '../queries/beer';
-import './BeerInfoContainer.css';
+import { useBeers } from '../queries/beers';
 import BeerInfoContent from '../components/BeerInfoContent';
+import './BeerInfoContainer.css';
 
 const BeerInfoContainer: React.FC = () => {
-  const { beerId } = useParams<{ beerId?: string }>();
+  const { pageNumber, beerId } = useParams<{
+    pageNumber?: string;
+    beerId?: string;
+  }>();
 
-  if (!beerId) {
+  if (!pageNumber || !beerId) {
     return null;
   }
 
-  const { data } = useBeer(+beerId);
+  const { data } = useBeers(+pageNumber);
 
   if (!data) {
     return null;
   }
 
-  return <BeerInfoContent data={data[0]} />;
+  const index = data.findIndex((beer) => beer.id === +beerId);
+
+  return <BeerInfoContent data={data[index]} />;
 };
 
 export default BeerInfoContainer;

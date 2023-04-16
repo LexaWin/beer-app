@@ -9,8 +9,6 @@ export const useFavorites = (isOpen: boolean) => {
   useEffect(() => {
     if (!storage || !isOpen) return;
 
-    console.log('use effect');
-
     storage
       .keys()
       .then(({ keys }) => Promise.all(keys.map((key) => storage.get({ key }))))
