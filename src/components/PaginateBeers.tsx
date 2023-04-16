@@ -22,10 +22,8 @@ const PaginateBeers: React.FC = () => {
       >
         {pages.map((i) => (
           <SwiperSlide key={i}>
-            {({ isActive, isNext, isPrev }) =>
-              isActive || isNext || isPrev ? (
-                <BeerCardsContainer pageNumber={i} />
-              ) : null
+            {({ isActive }) =>
+              isActive ? <BeerCardsContainer pageNumber={i} /> : null
             }
           </SwiperSlide>
         ))}
