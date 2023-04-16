@@ -4,10 +4,10 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Main from './pages/Main';
 import BeerInfo from './pages/BeerInfo';
-import { Storage } from '@ionic/storage';
-
-const storage = new Storage();
-storage.create();
+import {
+  PreferencesPlugin,
+  Preferences as storage,
+} from '@capacitor/preferences';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,7 +29,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import { createContext } from 'react';
 
-export const StorageCtx = createContext<Storage | null>(null);
+export const StorageCtx = createContext<PreferencesPlugin | null>(null);
 const queryClient = new QueryClient();
 
 setupIonicReact();

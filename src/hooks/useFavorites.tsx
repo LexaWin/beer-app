@@ -4,21 +4,18 @@ import { StorageCtx } from '../App';
 export const useFavorites = (isOpen: boolean) => {
   const storage = useContext(StorageCtx);
 
-  const [favoritesList, setFavoritesList] = useState<string[]>([]);
+  const [favoritesList, setFavoritesList] = useState<(string | null)[]>([]);
 
   useEffect(() => {
     if (!storage || !isOpen) return;
 
-    const list: string[] = [];
+    console.log('use effect');
 
     storage
-      .forEach((value) => {
-        list.push(value);
-      })
-      .then(() => {
-        setFavoritesList([...list]);
-      });
-  });
+      .keys()
+      .then(({ keys }) => Promise.all(keys.map((key) => storage.get({ key }))))
+      .then((values) => setFavoritesList(values.map(({ value }) => value)));
+  }, [isOpen]);
 
   return {
     favoritesList,

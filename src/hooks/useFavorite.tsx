@@ -11,9 +11,11 @@ export const useFavorite = (id: number, name: string) => {
     (async () => {
       if (!storage) return;
 
-      if (!!(await storage.get(`${id}`))) {
-        setFavorite(true);
-      }
+      storage.get({ key: `${id}` }).then(({ value }) => {
+        if (value !== null) {
+          setFavorite(true);
+        }
+      });
     })();
   }, []);
 
@@ -22,7 +24,7 @@ export const useFavorite = (id: number, name: string) => {
 
     setButtonState('disabled');
 
-    storage.set(`${id}`, name).then(() => {
+    storage.set({ key: `${id}`, value: name }).then(() => {
       setFavorite(true);
       setButtonState('active');
     });
@@ -33,7 +35,7 @@ export const useFavorite = (id: number, name: string) => {
 
     setButtonState('disabled');
 
-    storage.remove(`${id}`).then(() => {
+    storage.remove({ key: `${id}` }).then(() => {
       setFavorite(false);
       setButtonState('active');
     });
