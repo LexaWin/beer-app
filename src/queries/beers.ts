@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { api, getData } from './api';
 import { BeerModel } from '../declarations/models/beer.model';
 
-const BEERS_NUMBER = 5;
+export const BEERS_NUMBER = 5;
 
 const fetchBeers = (pageNumber: number) =>
   api

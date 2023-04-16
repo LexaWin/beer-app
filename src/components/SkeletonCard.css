@@ -1,0 +1,38 @@
+.skeleton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.skeleton > * {
+  background: linear-gradient(267.58deg, #dde2e5 0%, #f8f9fa 80%, #dde2e5 100%);
+  background-size: 200%;
+  animation: skeleton 1.5s ease-in-out infinite;
+}
+
+.skeleton__title {
+  width: 300px;
+  height: 24px;
+  margin: 16px 0 10px;
+}
+
+.skeleton__image {
+  width: 100px;
+  height: 100px;
+}
+
+.skeleton__text {
+  width: 95px;
+  height: 17px;
+  margin: 14px 0;
+}
+
+@keyframes skeleton {
+  0% {
+    background-position: 100%;
+  }
+
+  100% {
+    background-position: -100%;
+  }
+}
